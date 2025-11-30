@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Event Registration System</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+    .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 600px; }
+    pre { background: #f5f5f5; padding: 10px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Online Event Registration System</h1>
+
+  <div class="card">
+    <h2>Register for an Event</h2>
+
+    <select id="eventSelect">
+      <option value="">-- Select Event --</option>
+      <option value="E101">Tech Fest</option>
+      <option value="E102">Workshop</option>
+      <option value="E103">Hackathon</option>
+    </select>
+
+    <input id="name" placeholder="Enter your name" />
+    <input id="email" placeholder="Enter your email" />
+
+    <button id="regBtn">Register</button>
+
+    <h3>Result:</h3>
+    <pre id="output">No registration yet.</pre>
+  </div>
+
+  <script>
+    const backendUrl = "/backend/sample-events.json";
+
+    document.getElementById("regBtn").onclick = async () => {
+      const eventId = document.getElementById("eventSelect").value;
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if(!eventId || !name || !email){
+        document.getElementById("output").innerText = "Fill all fields!";
+        return;
+      }
+
+      const data = await fetch(backendUrl).then(r => r.json());
+      const event = data.find(e => e.eventId === eventId);
+
+      const response = {
+        message: "Registration successful!",
+        event: event,
+        participant: { name, email }
+      };
+
+      document.getElementById("output").innerText = JSON.stringify(response, null, 2);
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+  {
+    "eventId": "E101",
+    "eventName": "Tech Fest",
+    "date": "2025-12-10",
+    "location": "Main Auditorium"
+  },
+  {
+    "eventId": "E102",
+    "eventName": "Workshop",
+    "date": "2025-12-12",
+    "location": "CSE Lab"
+  },
+  {
+    "eventId": "E103",
+    "eventName": "Hackathon",
+    "date": "2025-12-15",
+    "location": "Block B Seminar Hall"
+  }
+]
